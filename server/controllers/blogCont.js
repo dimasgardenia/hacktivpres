@@ -25,7 +25,29 @@ let getAllArticles = (req, res) => {
   })
 }
 
+let deleteArticles = (req, res) => {
+  Blog.remove({_id:req.params.id}, function (err, result) {
+    if (!err) {
+      res.send(result)
+    } else {
+      res.send(err)
+    }
+  })
+}
+
+let findByIdArticles = (req, res) => {
+  Blog.findById({_id: req.params.id}, function (err, result) {
+    if(!err) {
+      res.send(result)
+    } else {
+      res.send(err)
+    }
+  })
+}
+
 module.exports = {
   PostArticles,
-  getAllArticles
+  getAllArticles,
+  deleteArticles,
+  findByIdArticles
 }
