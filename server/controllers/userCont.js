@@ -3,16 +3,16 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
 
-const register = (req, res) => {
+const register = (req, res)=>{
   const salt = bcrypt.genSaltSync(10)
   const hash = bcrypt.hashSync(`${req.body.password}`, salt)
   userMod.create({
-    username: req.body.username,
-    password: req.body.password,
+    username : req.body.username,
+    password: hash,
     email: req.body.email
-  }, function (err, result) {
+  },function (err, response) {
     if (!err) {
-      res.send(result)
+      res.send(response)
     } else {
       res.send(err)
     }
@@ -28,6 +28,7 @@ const login = (req, res) => {
         res.send('invalid username')
       } else {
         if (bcrypt.compareSync(req.body.password, result.password)) {
+          console.log('masuk')
           let token = jwt.sign({
             _id: result._id,
             username: result.username,
