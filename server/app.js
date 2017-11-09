@@ -11,8 +11,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const blog = require('./routers/blogRoute')
+const users = require('./routers/userRoute')
 
 app.use('/api', blog)
+app.use('/', users)
 
 app.listen(3000, function () {
   console.log('i am at 3000')
