@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/hacktivpress-dimasgardenia')
 
-app.use(bodyParser.urlenconded( {extended:false} ))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
